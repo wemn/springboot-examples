@@ -1,0 +1,31 @@
+POST http://localhost:8080/api/users/12/addresses
+Authorization: c048a3094b47e8cad87a0a07b35da5a857172c1376dbe5438cd047dafb44700cbefb8afb396845d177eb21ddb9861482
+Content-Type: application/json
+
+{
+  "detail": "778",
+  "user": {
+    "id": 18
+  }
+}
+
+###
+GET http://localhost:8080/api/users/12/addresses
+Authorization: c048a3094b47e8cad87a0a07b35da5a857172c1376dbe5438cd047dafb44700cbefb8afb396845d177eb21ddb9861482
+
+###
+PATCH http://localhost:8080/api/users/1/addresses/1
+Authorization: c048a3094b47e8cad87a0a07b35da5a857172c1376dbe5438cd047dafb44700cbefb8afb396845d177eb21ddb9861482
+Content-Type: application/json
+
+{
+  "id": 1,
+  "detail": "555",
+  "comment": "555",
+  "user": {
+    "id": 1
+  }
+}
+
+###
+
