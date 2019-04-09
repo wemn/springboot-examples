@@ -20,8 +20,8 @@ Content-Type: application/json
 
 {
   "id": 1,
-  "detail": "555",
-  "comment": "555",
+  "detail": "21",
+  "comment": "21",
   "user": {
     "id": 1
   }

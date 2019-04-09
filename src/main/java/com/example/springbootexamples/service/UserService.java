@@ -46,8 +46,7 @@ public class UserService {
                 .or(() -> {
                     throw new ResponseStatusException(HttpStatus.FORBIDDEN, "无权限");
                 })
-                .map(a -> {
-                    return addressRepository.refresh(addressRepository.save(address));
-                }).get();
+                .map(a -> addressRepository.save(address))
+                .get();
     }
 }
