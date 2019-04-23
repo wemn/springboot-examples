@@ -21,35 +21,6 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private EncryptorComponent encryptorComponent;
-
-    @PostMapping("/register")
-    public Map register(@RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.addUser(user);
-        return Map.of("user", user);
-    }
-
-    @PostMapping("/login")
-    public void login(@RequestBody User user, HttpServletResponse response) {
-        Optional.ofNullable(userService.getUser(user.getUserName()))
-                .or(() -> {
-                    throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "用户名或密码错误");
-                })
-                .ifPresent(u -> {
-                    if (!passwordEncoder.matches(user.getPassword(), u.getPassword())) {
-                        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "用户名或密码错误");
-                    }
-                    Map map = Map.of("uid", u.getId(), "aid", u.getAuthorityId());
-                    // 生成加密token
-                    String token = encryptorComponent.encrypt(map);
-                    // 在header创建自定义的权限
-                    response.setHeader("Authorization", token);
-                });
-    }
 
     @PostMapping("/users/{uid}/addresses")
     public Map postAddress(@RequestBody Address address, @RequestAttribute int uid) {

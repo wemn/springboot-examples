@@ -21,8 +21,7 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private int authorityId = 1;
-    @OneToMany(mappedBy = "user")
-    private List<Address> addresses;
+
     @Column(columnDefinition = "timestamp not null default current_timestamp",
             updatable = false, insertable = false)
     private LocalDateTime insertTime;
